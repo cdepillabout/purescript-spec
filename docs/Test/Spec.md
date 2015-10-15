@@ -18,27 +18,29 @@ data Result
 ``` purescript
 instance showResult :: Show Result
 instance eqResult :: Eq Result
+instance showGroup :: Show (Group Result)
+instance eqGroup :: Eq (Group Result)
 ```
 
 #### `Group`
 
 ``` purescript
-data Group
-  = Describe Name (Array Group)
-  | It Name Result
+data Group t
+  = Describe Name (Array (Group t))
+  | It Name t
   | Pending Name
 ```
 
 ##### Instances
 ``` purescript
-instance showGroup :: Show Group
-instance eqGroup :: Eq Group
+instance showGroup :: Show (Group Result)
+instance eqGroup :: Eq (Group Result)
 ```
 
 #### `Spec`
 
 ``` purescript
-type Spec r t = StateT (Array Group) (Aff r) t
+type Spec r t = StateT (Array (Group (Aff r Unit))) (Aff r) t
 ```
 
 #### `describe`
@@ -62,7 +64,13 @@ it :: forall r. String -> Aff r Unit -> Spec r Unit
 #### `collect`
 
 ``` purescript
-collect :: forall r. Spec r Unit -> Aff r (Array Group)
+collect :: forall r. Spec r Unit -> Aff r (Array (Group (Aff r Unit)))
+```
+
+#### `await`
+
+``` purescript
+await :: forall r. Array (Group (Aff r Unit)) -> Aff r (Array (Group Result))
 ```
 
 

@@ -11,7 +11,7 @@ import Control.Monad.Eff         (Eff())
 import Control.Monad.Eff.Console (CONSOLE(), print)
 import Data.Foldable             (sequence_)
 
-import Test.Spec          (Spec(), collect)
+import Test.Spec          (Spec(), collect, await)
 import Test.Spec.Console  (withAttrs)
 import Test.Spec.Summary  (successful)
 import Test.Spec.Reporter (Reporter())
@@ -27,10 +27,13 @@ run :: forall e r.
     Array (Reporter (process :: Process, console :: CONSOLE | e))
     -> Spec (process :: Process, console :: CONSOLE | e) Unit
     -> Eff  (process :: Process, console :: CONSOLE | e) Unit
-run rs spec = do
-  runAff
-    (\err -> do withAttrs [31] $ print err
-                exit 1)
-    (\results -> do sequence_ (map (\f -> f results) rs)
-                    when (not $ successful results) $ exit 1)
-    (collect spec)
+run rs spec =
+  runAff onError onSuccess testRun
+  where
+  testRun = do
+    groups <- collect spec
+    sequence_ (map (\f -> f groups) rs)
+    await groups
+  onError err = do withAttrs [31] $ print err
+                   exit 1
+  onSuccess results = when (not $ successful results) $ exit 1

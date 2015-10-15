@@ -3,28 +3,28 @@
 #### `Entry`
 
 ``` purescript
-data Entry
+data Entry t
   = Describe (Array Name)
-  | It Name Result
+  | It Name t
   | Pending Name
 ```
 
 ##### Instances
 ``` purescript
-instance eqEntry :: Eq Entry
-instance showEntry :: Show Entry
+instance eqEntry :: Eq (Entry Result)
+instance showEntry :: Show (Entry Result)
 ```
 
 #### `Reporter`
 
 ``` purescript
-type Reporter e = Array Group -> Eff e Unit
+type Reporter e = Array (Group (Aff e Unit)) -> Aff e Unit
 ```
 
 #### `collapse`
 
 ``` purescript
-collapse :: Group -> Array Entry
+collapse :: forall t. Array (Group t) -> Array (Entry t)
 ```
 
 

@@ -3,11 +3,12 @@ module Test.Spec.ReporterSpec where
 import Prelude
 
 import Control.Monad.Eff.Exception (error)
-import Data.Array                  (concatMap)
+import Data.Foldable               (mconcat)
 
 import           Test.Spec            ( Group(..)
                                       , Result(..)
                                       , collect
+                                      , await
                                       , describe
                                       , it
                                       )
@@ -25,26 +26,26 @@ reporterSpec =
     describe "Spec" $
       describe "Reporter" do
         it "collapses groups into entries with names" do
-          results <- collect successTest
-          concatMap R.collapse results `shouldEqual` [
+          results <- collect successTest >>= await
+          R.collapse results `shouldEqual` [
               R.Describe ["a", "b"],
               R.It "works" Success
             ]
         it "collapses groups into entries with shared describes" do
-          results <- collect sharedDescribeTest
-          concatMap R.collapse results `shouldEqual` [
+          results <- collect sharedDescribeTest >>= await
+          R.collapse results `shouldEqual` [
               R.Describe ["a", "b"],
               R.It "works" Success,
               R.Describe ["a", "c"],
               R.It "also works" Success
             ]
         it "reports failed tests" do
-          results <- collect failureTest
-          concatMap R.collapse results `shouldEqual` [
+          results <- collect failureTest >>= await
+          R.collapse results `shouldEqual` [
             R.It "fails" (Failure (error "1 ≠ 2"))
           ]
         it "reports pending tests" do
-          results <- collect pendingTest
-          concatMap R.collapse results `shouldEqual` [
+          results <- collect pendingTest >>= await
+          R.collapse results `shouldEqual` [
             R.Pending "is not written yet"
           ]

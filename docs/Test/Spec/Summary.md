@@ -16,13 +16,13 @@ instance monoidCount :: Monoid Summary
 #### `summarize`
 
 ``` purescript
-summarize :: Array Group -> Summary
+summarize :: Array (Group Result) -> Summary
 ```
 
 #### `successful`
 
 ``` purescript
-successful :: Array Group -> Boolean
+successful :: Array (Group Result) -> Boolean
 ```
 
 

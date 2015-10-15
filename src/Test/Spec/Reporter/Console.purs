@@ -2,13 +2,15 @@ module Test.Spec.Reporter.Console (consoleReporter) where
 
 import Prelude
 
+import Control.Monad.Aff           (Aff())
 import Control.Monad.Eff           (Eff())
+import Control.Monad.Eff.Class     (liftEff)
 import Control.Monad.Eff.Console   (CONSOLE(), log)
 import Control.Monad.Eff.Exception (message)
 import Data.Array                  (concatMap)
 import Data.Foldable               (intercalate, traverse_)
 
-import Test.Spec          (Group(), Result(..))
+import Test.Spec          (Group(), Result(..), await)
 import Test.Spec.Console  (withAttrs, write, writeln)
 import Test.Spec.Reporter (Entry(..), Reporter(), collapse)
 import Test.Spec.Summary  (Summary(..), summarize)
@@ -33,33 +35,34 @@ printPending p =
                                   writeln " pending"
            else return unit
 
-printSummary' :: forall r. Summary -> Eff (console :: CONSOLE | r) Unit
-printSummary' (Count passed failed pending) = do
+printSummary' :: forall r. Summary -> Aff (console :: CONSOLE | r) Unit
+printSummary' (Count passed failed pending) = liftEff $ do
   writeln ""
   withAttrs [1] $ writeln "Summary"
   printPassedFailed passed failed
   printPending pending
   writeln ""
 
-printSummary :: forall r. Array Group -> Eff (console :: CONSOLE | r) Unit
+printSummary :: forall r. Array (Group Result) -> Aff (console :: CONSOLE | r) Unit
 printSummary groups = printSummary' $ summarize groups
 
-printEntry :: forall r. Entry
-           -> Eff (console :: CONSOLE | r) Unit
-printEntry (It name Success) = do
+printEntry :: forall r. (Entry Result)
+           -> Aff (console :: CONSOLE | r) Unit
+printEntry (It name Success) = liftEff $ do
   withAttrs [32] $ writeln $  "✓︎ " ++ name
-printEntry (Pending name) = do
+printEntry (Pending name) = liftEff $ do
   withAttrs [33] $ writeln $  "~ " ++ name
-printEntry (It name (Failure err)) = do
+printEntry (It name (Failure err)) = liftEff $ do
   withAttrs [31] $ writeln $ "✗ " ++ name ++ ":"
   log ""
-  withAttrs [31] $ writeln $ "  " ++ message err
-printEntry (Describe n) = do
+  withAttrs [31] $ liftEff $ writeln $ "  " ++ message err
+printEntry (Describe n) = liftEff $ do
   writeln ""
   printNames n
   where printNames ns = withAttrs [1, 35] $ writeln $ intercalate " » " ns
 
 consoleReporter :: forall e. Reporter (console :: CONSOLE | e)
 consoleReporter groups = do
-  traverse_ printEntry $ concatMap collapse groups
-  printSummary groups
+  results <- await groups
+  traverse_ printEntry (collapse results)
+  printSummary results
