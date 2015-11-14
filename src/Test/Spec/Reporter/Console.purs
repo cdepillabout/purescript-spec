@@ -19,7 +19,7 @@ pluralize :: String -> Int -> String
 pluralize s 1 = s
 pluralize s _ = s <> "s"
 
-printPassedFailed :: forall r. Int -> Int -> Eff (console :: CONSOLE | r) Unit
+printPassedFailed :: Int -> Int -> Eff (console :: CONSOLE) Unit
 printPassedFailed p f = do
   let total = p + f
       testStr = pluralize "test" total
@@ -27,7 +27,7 @@ printPassedFailed p f = do
       attrs = if f > 0 then [31] else [32]
   withAttrs attrs $ writeln amount
 
-printPending :: forall r. Int -> Eff (console :: CONSOLE | r) Unit
+printPending :: Int -> Eff (console :: CONSOLE) Unit
 printPending p =
   if p > 0 then withAttrs [33] do write $ show p
                                   write " "
@@ -35,34 +35,40 @@ printPending p =
                                   writeln " pending"
            else return unit
 
-printSummary' :: forall r. Summary -> Aff (console :: CONSOLE | r) Unit
-printSummary' (Count passed failed pending) = liftEff $ do
+printSummary' :: Summary -> Eff (console :: CONSOLE) Unit
+printSummary' (Count passed failed pending) = do
   writeln ""
   withAttrs [1] $ writeln "Summary"
   printPassedFailed passed failed
   printPending pending
   writeln ""
 
-printSummary :: forall r. Array (Group Result) -> Aff (console :: CONSOLE | r) Unit
+printSummary :: Array (Group Result)
+                -> Eff (console :: CONSOLE) Unit
 printSummary groups = printSummary' $ summarize groups
 
-printEntry :: forall r. (Entry Result)
-           -> Aff (console :: CONSOLE | r) Unit
-printEntry (It name Success) = liftEff $ do
+printEntry :: Entry Result
+           -> Eff (console :: CONSOLE) Unit
+printEntry (It name Success) = do
   withAttrs [32] $ writeln $  "✓︎ " ++ name
-printEntry (Pending name) = liftEff $ do
+printEntry (Pending name) = do
   withAttrs [33] $ writeln $  "~ " ++ name
-printEntry (It name (Failure err)) = liftEff $ do
+printEntry (It name (Failure err)) = do
   withAttrs [31] $ writeln $ "✗ " ++ name ++ ":"
   log ""
-  withAttrs [31] $ liftEff $ writeln $ "  " ++ message err
-printEntry (Describe n) = liftEff $ do
+  withAttrs [31] $ writeln $ "  " ++ message err
+printEntry (Describe n) = do
   writeln ""
   printNames n
   where printNames ns = withAttrs [1, 35] $ writeln $ intercalate " » " ns
 
-consoleReporter :: forall e. Reporter (console :: CONSOLE | e)
+consoleReporter :: forall e. Array (Group (Aff e Unit))
+                   -> Aff (console :: CONSOLE | e) Unit
 consoleReporter groups = do
   results <- await groups
-  traverse_ printEntry (collapse results)
-  printSummary results
+  let printAll :: Array (Group Result) -> Eff (console :: CONSOLE) Unit
+      printAll r = do traverse_ printEntry (collapse r)
+                      printSummary results
+      a :: Aff (console :: CONSOLE) Unit
+      a = liftEff $ printAll results
+  a

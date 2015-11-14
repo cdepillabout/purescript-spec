@@ -32,7 +32,7 @@ instance showEntry :: Show (Entry S.Result) where
   show (It name (S.Failure err)) = "It \"" ++ name ++ "\" (Failure \"" ++ message err ++ "\")"
   show (Pending name) = "Pending \"" ++ name ++ "\""
 
-type Reporter e = Array (S.Group (Aff e Unit)) -> Aff e Unit
+type Reporter e r = Array (S.Group (Aff e Unit)) -> Aff r Unit
 
 countDescribes :: forall t r. Array (Entry t) -> Int
 countDescribes groups = foldl f 0 groups
