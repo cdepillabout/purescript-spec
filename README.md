@@ -20,12 +20,12 @@ The specs shown in the image above:
 ```purescript
 module Main where
 
-import Prelude
+import Prelude (..)
 
-import Control.Monad.Aff
-import Test.Spec                  (describe, pending, it)
-import Test.Spec.Runner           (run)
-import Test.Spec.Assertions       (shouldEqual)
+import Control.Monad.Aff (..)
+import Test.Spec (describe, pending, it)
+import Test.Spec.Runner (run)
+import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Reporter.Console (consoleReporter)
 
 main = run [consoleReporter] do
@@ -40,7 +40,7 @@ main = run [consoleReporter] do
       it "supports async specs" do
         res <- later' 100 $ return "Alligator"
         res `shouldEqual` "Alligator"
-      it "is PureScript 0.7 compatible" $ return unit
+      it "is PureScript 0.8 compatible" $ return unit
 ```
 
 ### Combining Specs
@@ -148,6 +148,9 @@ make ctags
 
 ## Changelog
 
+* **0.8**
+  * Added PureScript-0.8 support.
+  * Forked from purescript-spec.
 * **0.7.2**
   * Update purescript-strings for PS 0.7.4 compatibility
   * Make all dependencies flexible
