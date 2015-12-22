@@ -11,7 +11,7 @@ import Control.Monad.Eff.Exception (message)
 import Data.Array                  (concatMap, cons)
 import Data.Foldable               (foldl, intercalate)
 
-import qualified Test.Spec as S
+import Test.Spec as S
 
 data Entry = Describe (Array S.Name)
            | It S.Name S.Result

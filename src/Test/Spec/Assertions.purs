@@ -11,7 +11,7 @@ import Control.Monad               (when)
 import Control.Monad.Aff           (Aff())
 import Control.Monad.Eff.Exception (error)
 import Control.Monad.Error.Class   (throwError)
-import Data.Foldable               (Foldable, notElem)
+import Data.Foldable               (class Foldable, notElem)
 
 fail :: forall r. String -> Aff r Unit
 fail msg = throwError $ error $ msg
