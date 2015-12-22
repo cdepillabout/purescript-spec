@@ -1,14 +1,16 @@
-# purescript-spec
+# purescript-super-spec
 
-purescript-spec is a simple testing framework for Purescript using NodeJS. It's
-inspired by [hspec](http://hspec.github.io/).
+purescript-super-spec is a simple testing framework for Purescript using
+NodeJS. It's forked from
+[purescript-spec](https://github.com/owickstrom/purescript-spec) and inspired
+by [hspec](http://hspec.github.io/).
 
-<img src="https://raw.githubusercontent.com/owickstrom/purescript-spec/master/example.png" width="400" />
+<img src="https://raw.githubusercontent.com/cdepillabout/purescript-super-spec/master/example.png" width="400" />
 
 ## Usage
 
 ```bash
-bower install purescript-spec
+bower install purescript-super-spec
 ```
 
 ### Example
