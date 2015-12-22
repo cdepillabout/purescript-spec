@@ -1,25 +1,26 @@
 {
-  "name": "purescript-spec",
-  "version": "0.7.3",
+  "name": "purescript-super-spec",
+  "version": "0.8.0",
   "ignore": [
     "**/.*",
     "bower_components",
-    "test",
     "externs",
-    "tmp",
+    "node_modules",
     "output",
+    "test",
+    "tmp",
     "tools"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/owickstrom/purescript-spec.git"
+    "url": "git://github.com/cdepillabout/purescript-super-spec.git"
   },
   "dependencies": {
-    "purescript-console": ">=0.1.0",
-    "purescript-aff": ">=0.13.0",
-    "purescript-exceptions": ">=0.3.0",
-    "purescript-strings": ">=0.7.0",
-    "purescript-prelude": ">=0.1.2",
-    "purescript-transformers": "~0.8.2"
+    "purescript-console": "^0.1",
+    "purescript-aff": "^0.13",
+    "purescript-exceptions": "^0.3",
+    "purescript-strings": "^0.7",
+    "purescript-prelude": "^0.1",
+    "purescript-transformers": "^0.8"
   }
 }
