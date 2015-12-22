@@ -1,0 +1,27 @@
+{
+  "name": "purescript-super-spec",
+  "version": "0.8.0",
+  "description": "Simple testing framework for PureScript.",
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdepillabout/purescript-super-spec.git"
+  },
+  "author": "Dennis Gosnell <cdep.illabout@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/cdepillabout/purescript-super-spec/issues"
+  },
+  "homepage": "https://github.com/cdepillabout/purescript-super-spec",
+  "dependencies": {
+    "pulp": "^6.1.0",
+    "purescript": "^0.8.0-rc.1"
+  }
+}
