@@ -4,7 +4,7 @@ module Test.Spec.Summary (
   successful
   ) where
 
-import Prelude
+import Prelude (..)
 
 import Data.Foldable (foldMap)
 import Data.Monoid   (Monoid)

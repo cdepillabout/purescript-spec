@@ -3,7 +3,7 @@ module Test.Spec.Assertions.String (
   shouldNotContain
   ) where
 
-import Prelude
+import Prelude (..)
 
 import Control.Monad               (when)
 import Control.Monad.Aff           (Aff())

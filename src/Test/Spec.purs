@@ -9,7 +9,7 @@ module Test.Spec (
   collect
   ) where
 
-import Prelude
+import Prelude (..)
 
 import Control.Monad.Aff           (Aff(), attempt)
 import Control.Monad.Eff.Exception (Error())
