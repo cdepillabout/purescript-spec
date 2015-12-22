@@ -1,9 +1,8 @@
 module Test.Spec.AssertionSpec where
 
-import Prelude
+import Prelude (..)
 
 import Control.Monad.Aff           (Aff())
-import Control.Monad.Eff.Exception (error)
 import Control.Monad.Eff.Exception (error)
 import Control.Monad.Error.Class   (throwError)
 import Control.Monad.State.Trans   (StateT())
