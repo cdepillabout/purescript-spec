@@ -3,7 +3,7 @@ module Test.Spec.Runner (
   run
   ) where
 
-import Prelude (..)
+import Prelude (Unit, bind, not, ($), map)
 
 import Control.Monad             (when)
 import Control.Monad.Aff         (runAff)

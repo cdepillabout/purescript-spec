@@ -6,7 +6,7 @@ module Test.Spec.Console
   , withAttrs
   ) where
 
-import Prelude (..)
+import Prelude (Unit, bind, show, (<>), ($))
 
 import Control.Apply             ((*>))
 import Control.Monad.Eff         (Eff())

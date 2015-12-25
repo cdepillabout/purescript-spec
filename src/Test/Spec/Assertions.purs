@@ -5,7 +5,7 @@ module Test.Spec.Assertions
   , shouldContain
   ) where
 
-import Prelude (..)
+import Prelude (class Show, class Eq, Unit, bind, show, (++), ($), (==), (/=))
 
 import Control.Monad               (when)
 import Control.Monad.Aff           (Aff())

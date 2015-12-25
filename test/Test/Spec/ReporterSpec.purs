@@ -1,6 +1,6 @@
 module Test.Spec.ReporterSpec where
 
-import Prelude (..)
+import Prelude (Unit, bind, ($))
 
 import Control.Monad.Aff           (Aff())
 import Control.Monad.Eff.Exception (error)

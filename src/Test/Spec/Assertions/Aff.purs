@@ -2,7 +2,7 @@ module Test.Spec.Assertions.Aff (
   expectError
   ) where
 
-import Prelude (..)
+import Prelude (Unit, bind, ($), unit, return)
 
 import Control.Monad.Aff           (Aff, attempt)
 import Control.Monad.Eff.Exception (error)

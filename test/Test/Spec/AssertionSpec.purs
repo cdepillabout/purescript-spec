@@ -1,6 +1,6 @@
 module Test.Spec.AssertionSpec where
 
-import Prelude (..)
+import Prelude (Unit, bind, return, ($))
 
 import Control.Monad.Aff           (Aff())
 import Control.Monad.Eff.Exception (error)

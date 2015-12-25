@@ -1,6 +1,6 @@
 module Test.Spec.Reporter.Console (consoleReporter) where
 
-import Prelude (..)
+import Prelude (Unit, bind, ($), (++), unit, return, show, (>), (+), (<>))
 
 import Control.Monad.Eff           (Eff())
 import Control.Monad.Eff.Console   (CONSOLE(), log)

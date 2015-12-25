@@ -1,6 +1,6 @@
 module Test.Spec.RunnerSpec where
 
-import Prelude (..)
+import Prelude (Unit, bind, return, ($))
 
 import Control.Monad.Aff         (Aff(), later')
 import Control.Monad.State.Trans (StateT())

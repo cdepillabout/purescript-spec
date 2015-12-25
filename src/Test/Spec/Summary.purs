@@ -4,12 +4,12 @@ module Test.Spec.Summary (
   successful
   ) where
 
-import Prelude (..)
+import Prelude (class Semigroup, bind, (+))
 
 import Data.Foldable (foldMap)
 import Data.Monoid   (class Monoid)
 
-import Test.Spec (..)
+import Test.Spec (Group(..), Result(..))
 
 data Summary = Count Int Int Int
 

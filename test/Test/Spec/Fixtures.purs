@@ -1,6 +1,6 @@
 module Test.Spec.Fixtures where
 
-import Prelude (..)
+import Prelude (Unit, bind, ($))
 
 import Control.Monad.Aff         (Aff())
 import Control.Monad.State.Trans (StateT())
