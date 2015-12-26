@@ -16,8 +16,8 @@ data Result
 
 ##### Instances
 ``` purescript
-instance showResult :: Show Result
-instance eqResult :: Eq Result
+Show Result
+Eq Result
 ```
 
 #### `Group`
@@ -31,8 +31,8 @@ data Group
 
 ##### Instances
 ``` purescript
-instance showGroup :: Show Group
-instance eqGroup :: Eq Group
+Show Group
+Eq Group
 ```
 
 #### `Spec`
@@ -63,6 +63,12 @@ it :: forall r. String -> Aff r Unit -> Spec r Unit
 
 ``` purescript
 collect :: forall r. Spec r Unit -> Aff r (Array Group)
+```
+
+#### `prop`
+
+``` purescript
+prop :: forall r prop. (Testable prop) => String -> prop -> Spec (console :: CONSOLE, random :: RANDOM, err :: EXCEPTION | r) Unit
 ```
 
 
