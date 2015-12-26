@@ -6,18 +6,26 @@ module Test.Spec (
   describe,
   pending,
   it,
-  collect
+  collect,
+  prop
   ) where
 
-import Prelude (class Eq, class Show, Unit, bind, return, ($), unit, (++), (==), (&&), show)
+import Prelude
+    ( class Eq, class Show, Unit, bind, return, ($), unit, (++), (==), (&&)
+    , (<<<), show
+    )
 
 import Control.Monad.Aff           (Aff(), attempt)
-import Control.Monad.Eff.Exception (Error())
+import Control.Monad.Eff.Class     (liftEff)
+import Control.Monad.Eff.Console   (CONSOLE)
+import Control.Monad.Eff.Exception (EXCEPTION, Error())
+import Control.Monad.Eff.Random    (RANDOM)
 import Control.Monad.State.Class   (modify)
 import Control.Monad.State.Trans   (StateT(), runStateT)
 import Control.Monad.Trans         (lift)
 import Data.Either                 (either)
 import Data.Tuple                  (snd)
+import Test.QuickCheck             (class Testable, quickCheck)
 
 type Name = String
 
@@ -85,3 +93,10 @@ collect :: forall r. Spec r Unit
 collect r = do
   c <- runStateT r []
   return $ snd c
+
+prop :: forall r prop
+      . (Testable prop)
+     => String
+     -> prop
+     -> Spec (console :: CONSOLE, random :: RANDOM, err :: EXCEPTION | r) Unit
+prop string p = it string <<< liftEff $ quickCheck p

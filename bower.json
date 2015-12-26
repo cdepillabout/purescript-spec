@@ -21,6 +21,9 @@
     "purescript-exceptions": "^0.3",
     "purescript-strings": "^0.7",
     "purescript-prelude": "^0.1",
-    "purescript-transformers": "^0.8"
+    "purescript-transformers": "^0.8",
+    "purescript-quickcheck": "^0.12",
+    "purescript-eff": "^0.1",
+    "purescript-random": "~0.2.3"
   }
 }
