@@ -73,10 +73,9 @@ runCatch name tests = do
   onSuccess _ = return $ It name Success
 
 it :: forall r. String
-    -> Aff r Unit
-    -> Spec r Unit
-it description tests =
-  do
+   -> Aff r Unit
+   -> Spec r Unit
+it description tests = do
     result <- lift $ runCatch description tests
     modify $ \p -> p ++ [result]
     return unit
