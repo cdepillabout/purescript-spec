@@ -1,6 +1,6 @@
 {
   "name": "purescript-super-spec",
-  "version": "0.8.1",
+  "version": "0.8.4",
   "description": "Simple testing framework for PureScript.",
   "directories": {
     "doc": "docs",
@@ -23,6 +23,6 @@
   "dependencies": {
     "bower": "^1.7.1",
     "pulp": "^6.1.0",
-    "purescript": "^0.8.0-rc.1"
+    "purescript": "^0.8.0"
   }
 }

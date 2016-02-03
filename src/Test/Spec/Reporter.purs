@@ -4,7 +4,7 @@ module Test.Spec.Reporter (
   collapse
   ) where
 
-import Prelude (class Show, class Eq, Unit, bind, map, (==), ($), (+), (++), (&&))
+import Prelude (class Show, class Eq, Unit, map, (==), ($), (+), (++), (&&))
 
 import Control.Monad.Eff           (Eff())
 import Control.Monad.Eff.Exception (message)

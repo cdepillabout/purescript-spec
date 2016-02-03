@@ -4,7 +4,7 @@ module Test.Spec.Summary (
   successful
   ) where
 
-import Prelude (class Semigroup, bind, (+))
+import Prelude (class Semigroup, (+))
 
 import Data.Foldable (foldMap)
 import Data.Monoid   (class Monoid)
