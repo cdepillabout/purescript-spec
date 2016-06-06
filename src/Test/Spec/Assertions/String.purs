@@ -5,7 +5,6 @@ module Test.Spec.Assertions.String (
 
 import Prelude
 
-import Control.Monad               (when)
 import Control.Monad.Aff           (Aff())
 import Control.Monad.Error.Class   (throwError)
 import Control.Monad.Eff.Exception (error)
