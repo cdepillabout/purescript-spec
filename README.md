@@ -1,5 +1,9 @@
 # purescript-super-spec
 
+[![Latest release](http://img.shields.io/bower/v/purescript-super-spec.svg)](https://github.com/cdepillabout/purescript-super-spec/releases)
+[![Build Status](https://travis-ci.org/cdepillabout/purescript-super-spec.svg?branch=master)](https://travis-ci.org/cdepillabout/purescript-super-spec)
+[![Maintainer: cdepillabout](https://img.shields.io/badge/maintainer-cdepillabout-lightgrey.svg)](http://github.com/cdepillabout)
+
 purescript-super-spec is a simple testing framework for Purescript using
 NodeJS. It's forked from
 [purescript-spec](https://github.com/owickstrom/purescript-spec) and inspired
@@ -148,6 +152,8 @@ make ctags
 
 ## Changelog
 
+* **0.9**
+  * Added PureScript-0.9 support.
 * **0.8**
   * Added PureScript-0.8 support.
   * Forked from purescript-spec.
