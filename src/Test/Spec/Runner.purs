@@ -8,7 +8,7 @@ import Prelude (Unit, bind, not, ($), map)
 import Control.Monad             (when)
 import Control.Monad.Aff         (runAff)
 import Control.Monad.Eff         (Eff())
-import Control.Monad.Eff.Console (CONSOLE(), print)
+import Control.Monad.Eff.Console (CONSOLE(), logShow)
 import Data.Foldable             (sequence_)
 
 import Test.Spec          (Spec(), collect)
@@ -29,7 +29,7 @@ run :: forall e.
     -> Eff  (process :: Process, console :: CONSOLE | e) Unit
 run rs spec = do
   runAff
-    (\err -> do withAttrs [31] $ print err
+    (\err -> do withAttrs [31] $ logShow err
                 exit 1)
     (\results -> do sequence_ (map (\f -> f results) rs)
                     when (not $ successful results) $ exit 1)

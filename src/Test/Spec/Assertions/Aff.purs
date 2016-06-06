@@ -3,7 +3,7 @@ module Test.Spec.Assertions.Aff
     , expectErrorProp
     ) where
 
-import Prelude (Unit, bind, ($), unit, (<<<), return)
+import Prelude
 
 import Control.Monad.Aff           (Aff, attempt)
 import Control.Monad.Eff.Class     (liftEff)
@@ -18,7 +18,7 @@ expectError :: forall r t. Aff r t -> Aff r Unit
 expectError a = do
   e <- attempt a
   case e of
-    Left _ -> return unit
+    Left _ -> pure unit
     Right _ -> throwError $ error "Expected error"
 
 expectErrorProp :: forall eff prop

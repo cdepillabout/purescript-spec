@@ -4,7 +4,7 @@ module Test.Spec.Reporter (
   collapse
   ) where
 
-import Prelude (class Show, class Eq, Unit, map, (==), ($), (+), (++), (&&))
+import Prelude
 
 import Control.Monad.Eff           (Eff())
 import Control.Monad.Eff.Exception (message)
@@ -26,10 +26,10 @@ instance eqEntry :: Eq Entry where
   eq _ _ = false
 
 instance showEntry :: Show Entry where
-  show (Describe names) = "Describe \"" ++ (intercalate " » " names) ++ "\""
-  show (It name S.Success) = "It \"" ++ name ++ "\" Success"
-  show (It name (S.Failure err)) = "It \"" ++ name ++ "\" (Failure \"" ++ message err ++ "\")"
-  show (Pending name) = "Pending \"" ++ name ++ "\""
+  show (Describe names) = "Describe \"" <> (intercalate " » " names) <> "\""
+  show (It name S.Success) = "It \"" <> name <> "\" Success"
+  show (It name (S.Failure err)) = "It \"" <> name <> "\" (Failure \"" <> message err <> "\")"
+  show (Pending name) = "Pending \"" <> name <> "\""
 
 type Reporter e = Array S.Group -> Eff e Unit
 

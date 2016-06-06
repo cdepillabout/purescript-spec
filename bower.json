@@ -16,14 +16,14 @@
     "url": "git://github.com/cdepillabout/purescript-super-spec.git"
   },
   "dependencies": {
-    "purescript-console": "^0.1",
-    "purescript-aff": "^0.13",
-    "purescript-exceptions": "^0.3",
-    "purescript-strings": "^0.7",
-    "purescript-prelude": "^0.1",
-    "purescript-transformers": "^0.8",
-    "purescript-quickcheck": "^0.12",
-    "purescript-eff": "^0.1",
-    "purescript-random": "~0.2.3"
+    "purescript-console": "^1.0.0",
+    "purescript-aff": "^0.17.0",
+    "purescript-exceptions": "^1.0.0",
+    "purescript-strings": "^1.0.0",
+    "purescript-prelude": "^1.0.0",
+    "purescript-transformers": "^1.0.0",
+    "purescript-quickcheck": "^1.0.0",
+    "purescript-eff": "^1.0.0",
+    "purescript-random": "^1.0.0"
   }
 }

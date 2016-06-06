@@ -21,8 +21,7 @@
   },
   "homepage": "https://github.com/cdepillabout/purescript-super-spec",
   "dependencies": {
-    "bower": "^1.7.1",
-    "pulp": "^6.1.0",
-    "purescript": "^0.8.0"
+    "bower": "^1.7.9",
+    "pulp": "^9.0.1"
   }
 }
