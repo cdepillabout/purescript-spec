@@ -16,5 +16,5 @@ install:
     - bower --version
     - bower install
 script:
-    - pulp build
-    - pulp test
+    - travis_wait pulp build
+    - travis_wait pulp test
