@@ -1,6 +1,6 @@
 module Test.Spec.AssertionSpec where
 
-import Prelude (Unit, bind, return, ($))
+import Prelude
 
 import Control.Monad.Aff           (Aff())
 import Control.Monad.Eff.Exception (error)
@@ -35,4 +35,4 @@ assertionSpec =
             it "returns unit when given an error" $
               expectError $ throwError $ error "omg"
             it "returns an error when given a non-error" $
-              expectError $ expectError $ return "ok"
+              expectError $ expectError $ pure "ok"
