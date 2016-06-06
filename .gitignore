@@ -8,3 +8,7 @@ tmp/
 tags
 .pulp-cache/
 /pursuit.json
+
+# psc and frields create tix files when profiling is enabled.  It looks like
+# profiling is enabled on some releases.
+*.tix
