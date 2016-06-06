@@ -1,6 +1,6 @@
 {
   "name": "purescript-super-spec",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Simple testing framework for PureScript.",
   "directories": {
     "doc": "docs",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/cdepillabout/purescript-super-spec.git"
   },
   "author": "Dennis Gosnell <cdep.illabout@gmail.com>",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cdepillabout/purescript-super-spec/issues"
   },
